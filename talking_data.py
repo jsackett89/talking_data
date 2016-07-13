@@ -11,16 +11,23 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 import glob
+import logging
+
+logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Create list of csv filepaths in working project directory
-cwd = os.getcwd()
-filePaths = [cwd + "\\" + f for f in glob.glob("*.csv")]
+filePaths = [f for f in glob.glob(os.path.join('data', '*.csv'))]
 # File names
-fileNames = ['app_labels', 'events', 'ga_test', 'ga_train', 'labels', 'pbdm', 'sample_sub']
+fileNames = ['app_events', 'app_labels', 'events', 'ga_test', 'ga_train', 'labels', 'label_categories', 'pbdm', 'sample_sub']
 # Create tuples for dictionary comprehension
 fileKeyVal = zip(fileNames, filePaths)
 # Create dictionary of files
-fileDict = {name : pd.read_csv(file) for name, file in  fileKeyVal}
+fileDict = {name: pd.read_csv(file) for name, file in fileKeyVal}
 
 # Explore files
+for filename, file in fileDict.items():
+    logger.info("File name: {0}".format(filename))
+    logger.info("File columns: {0}".format(file.columns))
+
 
