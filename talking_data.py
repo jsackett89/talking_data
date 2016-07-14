@@ -31,3 +31,5 @@ for filename, file in fileDict.items():
     logger.info("File columns: {0}".format(file.columns))
 
 
+app_events = fileDict.get("app_events")
+print(app_events.describe)
