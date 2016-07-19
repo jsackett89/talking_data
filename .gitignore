@@ -91,3 +91,4 @@ ENV/
 #local
 .idea/
 data/*
+*.csv
